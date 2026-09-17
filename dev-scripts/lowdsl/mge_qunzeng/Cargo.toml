@@ -10,3 +10,7 @@ rsvz = { path = "../../../crates/scripting/api" }
 
 [workspace]
 resolver = "3"
+
+[dev-dependencies]
+rsvz = { path = "../../../crates/scripting/api", features = ["pvz-emulator"] }
+rsvz-pvz-emulator-backend = { path = "../../../crates/backends/pvz_emulator/backend" }

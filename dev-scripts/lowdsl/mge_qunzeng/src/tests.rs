@@ -21,6 +21,9 @@ pub(super) fn scene_with_setup(setup: impl FnOnce(), f: impl FnOnce()) {
                 b.set_sun(8000).unwrap();
                 b.select_card(sel(Blover).checked().unwrap()).unwrap();
                 b.select_card(MIMIC_ICE.checked().unwrap()).unwrap();
+                b.select_card(sel(FumeShroom).checked().unwrap()).unwrap();
+                b.select_card(sel(GloomShroom).checked().unwrap()).unwrap();
+                b.select_card(sel(IceShroom).checked().unwrap()).unwrap();
                 b.finish_card_selection().unwrap();
             });
             f();
@@ -55,10 +58,10 @@ fn unsafe_planting_does_not_spend_card_or_sun_and_next_grid_is_tried() {
 }
 
 #[test]
-fn card_choice_only_changes_gloom_threshold() {
+fn card_choice_covers_car_and_jack_sun_boundary() {
     for count in [8, 9] {
         for balance in [1999, 2000, 4999, 5000] {
-            for jack in [false, true] {
+            for (jack, car) in [(false, false), (false, true), (true, false), (true, true)] {
                 scene(|| {
                     for col in 1..=count {
                         put(GloomShroom, (3, col));
@@ -66,12 +69,13 @@ fn card_choice_only_changes_gloom_threshold() {
                     rsvz::with_backend(|b| {
                         b.set_sun(balance).unwrap();
                         b.set_spawn_type_allowed(Z::JackInTheBox, jack).unwrap();
+                        b.set_spawn_type_allowed(Z::Zomboni, car).unwrap();
                     });
                     let cards = choose_cards().unwrap();
                     assert_eq!(cards.len(), 10);
                     assert_eq!(
                         cards.contains(&sel(GloomShroom)),
-                        count < 9 || balance >= 5000 || jack && balance >= 2000
+                        count < 9 || balance >= 5000 || (jack || car) && balance >= 2000
                     );
                     assert_eq!(
                         &cards[..6],
@@ -87,5 +91,24 @@ fn card_choice_only_changes_gloom_threshold() {
                 });
             }
         }
+    }
+}
+
+#[test]
+fn copy_ice_avoids_white_giant_and_normal_zombie() {
+    for kind in [Z::Gargantuar, Z::Normal] {
+        scene_with_setup(
+            || {
+                rsvz::with_backend(|b| {
+                    let z = b.place_zombie(kind, grid((1, 6))).unwrap();
+                    b.set_zombie_x(z, rsvz::core::model::I32RepresentableF32::new(350.0).unwrap())
+                        .unwrap();
+                });
+            },
+            || {
+                assert!(!rsvz::is_safe_imitator_ice(grid((1, 5))).unwrap());
+                assert!(rsvz::is_safe_imitator_ice(grid((5, 5))).unwrap());
+            },
+        );
     }
 }

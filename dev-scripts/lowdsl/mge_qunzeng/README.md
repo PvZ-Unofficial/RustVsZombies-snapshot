@@ -1,44 +1,50 @@
-# MGE 群曾
+# MGE 群曾：固定四喷版
 
-移植自 `MGE 群曾 20260915.cpp`，使用源码中的蘑菇园布阵码。
-原生随机出怪，先抽种类再移除蹦极，不补入其他种类；不是 FE SL 的蹦极数量重抽。
-保留女仆召唤伴舞、每帧原生 Dance、5001cs 内部时钟、双冰/核/樱桃、
-地刺扎车、巨人垫材、三叶草救场和按预期寿命排序的南瓜修补。
-内部时钟跨正常续关保留，仅在新游戏样本重置。智能铲除使用主库。
-已有存活忧郁菇的修补格直接跳过检查，避免每帧重复扫描危险僵尸和尝试无效种卡。
+同步自独立 MGE 仓库提交 `5fb8b9c6ea729e6a6296c7be22a66ebae15bc65f`。
+采用“补五列喷、不偷阳光菇”的已测版本，不是发布验收会话重新移植的脚本。
+源码与该提交一致，只调整 Cargo 依赖路径以适配库内示例。
 
-修正：删除墓碑死分支；樱桃不可用时不先铲植物；复制冰重复条件去重；
-取消 1500 轮时跳过选卡的手动启动特例。
+- 阵型为边路四、五列双大喷，四列带南瓜；三路七列没有误放的梯子。
+- 四列喷正常维护；前场六曾和四列喷齐全时，按五路、一路顺序尝试补五列喷。
+  使用原有局部威胁条件，红眼关也允许补，不采用“不补五列喷”实验。
+- 不将四、五列大喷替换为阳光菇。卡组中的阳光菇仍可作为普通垫材。
+- 模仿冰使用主库 `is_safe_imitator_ice`，候选顺序为
+  `(1,4) → (5,4) → (1,6) → (5,6) → (2,7) → (4,7) → (1,5) → (5,5)`。
+  先空格、普通垫材、五列喷，等待后才允许牺牲四列喷；冰冻未结束时延后请求。
+- 普通三叶草使用主库 `is_safe_blover`；智能铲除使用主库。
+- 保留六列普通垫材保护、冰车/小丑选曾、前场补曾优先级及该版本的南瓜维护。
+- 自然随机出怪后移除蹦极；女仆召唤伴舞、逐帧原生 Dance、5001cs 卡序和 W20 禁冰不变。
+  正常续关保留时钟，新独立样本按 world epoch 重置。
 
-普通三叶草统一调用主库 `is_safe_blover`，防空每次更新重新找安全格；铲种前先检查安全，
-普通复制冰让位保留尚未吹风的三叶草，应急樱桃仍按原优先级处理。
-选曾条件由 `<10` 改为 `<9`，其余选卡顺序不变；低阳光且完整九曾时可能不带曾，
-本轮随后损失曾便无法修补，是该实验的明确代价。两项的收益仍须区分看待。
+## 测算
 
-默认测算 600 秒，达到期限后不新开样本，已启动样本继续到自然失败。
-一轮是 20 波/2 旗；初始成熟阶段不计入通过轮数。
+默认接纳新样本 600 秒，之后不启动新样本，已有样本继续到自然失败。
+一轮为 20 波、两面旗帜，初始成熟阶段不计入本次成绩。
 
 | 环境变量 | 默认 | 用途 |
 |---|---|---|
-| MGE_SECONDS | 600 | 测算接纳窗口；0 关闭预期通关测算 |
-| MGE_SUN | 8000 | 新样本初始阳光 |
-| MGE_ROUNDS | 1500 | 新样本初始已通过阶段 |
-| MGE_TRACE_DIR | 未设置 | 每 worker 独立日志目录，运行前创建 |
-| MGE_TRACE_LOSS | 1 | 植物损失 trace |
-| MGE_TRACE_ACTIONS | 0 | 用卡结果详细 trace，仅用于短诊断 |
-| MGE_TRACE_DECISIONS | 0 | 低频防空状态、三叶草生效/消失、成功用卡、铲除、关键植物啃食者和进家波次；仅用于定向诊断 |
-| MGE_SMOKE_FRAMES | 0 | 非零时在指定帧数验证场景并结束；与 MGE_SECONDS=0 一起用 |
+| MGE_SECONDS | 600 | 测算接纳窗口；0 关闭测算 |
+| MGE_SUN | 8000 | 测算新样本初始阳光 |
+| MGE_ROUNDS | 1500 | 测算新样本初始成熟阶段 |
+| MGE_TRACE_DIR | 未设置 | 每 worker 日志目录，运行前创建且不复用旧文件 |
+| MGE_TRACE_LOSS | 1 | 植物损失日志 |
+| MGE_TRACE_ACTIONS | 0 | 全部用卡结果详细日志，按需启用 |
+| MGE_TRACE_DECISIONS | 0 | 决策、防空和成功用卡日志，定向诊断时启用 |
+| MGE_SMOKE_FRAMES | 0 | 非零时短测指定帧数并检查场景，配合 MGE_SECONDS=0 |
 
-PE：`cargo run -p rsvz-cli -- run-pe --dev-script lowdsl/mge_qunzeng --release --pe-toolchain clang-thin-lto --threads 12`
+在 RSVZ 根目录运行：
 
-1051/Portable 的 Opening 设置真实 MushroomGarden 背景及五行陆地，不使用 NE 贴图。
-持续 Dance 测算选项和原生每帧 SetDance 不是逐帧等价：前者在冻结/啃食中仍重置动画，
-本脚本暂保留原生操作。它与舞王的 MaidCheats 是独立设置。
+```powershell
+cargo run -p rsvz-cli -- run-pe --dev-script lowdsl/mge_qunzeng --release --pe-toolchain clang-thin-lto --threads 12 --performance-window-secs 600 --output results/mge.json
+cargo test --manifest-path dev-scripts/lowdsl/mge_qunzeng/Cargo.toml --lib
+```
 
-开启植物损失 trace 时，注册期预留 4096 个公共事件槽，避免拥挤波次超过默认
-256 槽导致测算中断；模拟热路径不扩容。
+发布工具包可用 `scripts/rsvz-snapshot.ps1` 代替上面的 `cargo run -p rsvz-cli --`。
+1051 录像前先做 build-only，关闭测算并核对游戏初始条件；关闭测算后不自动应用
+`MGE_SUN` / `MGE_ROUNDS` 的 WorldResetConfig。细节见 [快照使用指南](../../../docs/snapshot-quickstart.md)。
 
-`MGE_TRACE_DECISIONS=1` 另记录三叶草拒种尝试和损失；“消失但未观察到吹风”不是
-“一定未吹风”，同帧生效后死亡仍有观察盲区。`safe_mask` 的位序与防空候选格列表相同。
-诊断不增加主库接口，默认关闭，不修改用卡决策。测算与实验记录见
-[`mge-conservative-optimization.md`](../../../docs/history/mge-conservative-optimization.md)。
+不同打法的正式效果比较使用独立随机种子；固定种子只用于复现失败。
+本次同步不借用其他脚本或历史样本的均值作为新验证结果。
+
+2026-09-18 同步验证：9 项原有测试、格式检查、PE ThinLTO 2,000 帧短模拟、
+1051 DLL 与注入器 build-only 通过。本次没有重跑十分钟测算或进行实机注入。

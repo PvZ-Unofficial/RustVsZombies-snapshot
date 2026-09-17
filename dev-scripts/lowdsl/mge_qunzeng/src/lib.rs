@@ -15,7 +15,7 @@ mod tests;
 mod trace;
 
 type Pos = (i32, i32);
-const LINEUP: &str = "LI5HDH3tBiZ/13rXcldAXJjACH/tATT/lA7S4QTFwRTFwVY0ZZXhbIH0zVdU/ipHCVI=";
+const LINEUP: &str = "LI5HDH3tBib/1HrXeldAXJjACF9AjX7kwjV5ADBxBDDxVAwYNHkaYTyyVFTl6EfQUg==";
 const ALL_X: (f32, f32) = (-1000.0, 1000.0);
 const ALL_HP: (i32, i32) = (0, i32::MAX);
 const GIANTS: [Z; 2] = [Z::GigaGargantuar, Z::Gargantuar];
@@ -84,10 +84,6 @@ fn plant_count(k: PlantKind) -> usize {
 fn shovel(pos: Pos) -> RuntimeResult<()> {
     trace::removal(pos, "shovel");
     rsvz::core::shovel(pos.0, pos.1)
-}
-fn remove(k: PlantKind, pos: Pos) -> RuntimeResult<()> {
-    trace::removal(pos, "remove_kind");
-    rsvz::core::modifier::remove_plant_kind_at(k, grid(pos)).map(|_| ())
 }
 fn play(c: CardSelection, pos: Pos) -> bool {
     let Some(slot) = find_usable_seed([c]) else {
@@ -245,7 +241,7 @@ fn choose_cards() -> RuntimeResult<Vec<CardSelection>> {
     let garg = allowed(Z::Gargantuar);
     let car = allowed(Z::Zomboni);
     let jack = allowed(Z::JackInTheBox);
-    if plant_count(GloomShroom) < 9 || sun() >= 5000 || jack && sun() >= 2000 {
+    if plant_count(GloomShroom) < 9 || sun() >= 5000 || (jack || car) && sun() >= 2000 {
         cards.push(sel(GloomShroom));
     }
     if car {

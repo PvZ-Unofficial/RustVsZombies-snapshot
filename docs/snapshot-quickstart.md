@@ -30,9 +30,9 @@ Rust 固定为 nightly-2026-06-04，LLVM 固定使用包内版本，不自行升
 
 ## 找到和迁移脚本
 
-无炮示例：`dev-scripts/lowdsl/mge_qunzeng`（保留的旧版 MGE 群曾）、
+无炮示例：`dev-scripts/lowdsl/mge_qunzeng`（独立仓库的固定四喷版，不偷阳光菇）、
 `dev-scripts/lowdsl/pe96`。定时炮阵示例：`dev-scripts/lowdsl/pe24`。
-MGE 示例基于 https://github.com/xqbzd/xqbzd1AVZ 中的群曾脚本，并非该作者的最新版。
+MGE 示例基于 https://github.com/xqbzd/xqbzd1AVZ 中的群曾脚本，另含独立仓库中的安全复制冰及固定四喷打法；具体来源与有意差异见示例 README。
 比较时记录具体 AvZ 文件与提交，先列出打法差异，再按用户选择移植。
 
 新脚本可放在独立目录，CLI 支持裸 `.rs`（含相邻模块及可选 `rsvz.toml`）和
