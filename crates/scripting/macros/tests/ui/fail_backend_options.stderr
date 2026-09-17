@@ -1,0 +1,11 @@
+error: unsupported #[rsvz::script] option; final runners select backends with Cargo features
+ --> tests/ui/fail_backend_options.rs:3:23
+  |
+3 | #[rsvz_macros::script(pvz_emulator)]
+  |                       ^^^^^^^^^^^^
+
+error: unsupported #[rsvz::script] option; final runners select backends with Cargo features
+ --> tests/ui/fail_backend_options.rs:6:23
+  |
+6 | #[rsvz_macros::script(xxx_backend)]
+  |                       ^^^^^^^^^^^

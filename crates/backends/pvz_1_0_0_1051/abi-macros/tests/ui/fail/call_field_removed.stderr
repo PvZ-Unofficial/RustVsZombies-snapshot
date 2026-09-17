@@ -1,0 +1,5 @@
+error: public ABI DSL no longer accepts `call:`; the macro selects the call-target scratch register internally
+ --> tests/ui/fail/call_field_removed.rs:8:13
+  |
+8 |             call: eax,
+  |             ^^^^

@@ -1,0 +1,16 @@
+[package]
+name = "pvzp-rs"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Narrow raw bindings for the PvZ-Portable RustVsZombies bridge"
+build = "build.rs"
+
+[build-dependencies]
+bindgen = "0.72"
+
+[dependencies]
+thiserror.workspace = true
+
+[lints]
+workspace = true

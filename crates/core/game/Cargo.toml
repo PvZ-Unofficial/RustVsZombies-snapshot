@@ -1,0 +1,25 @@
+[package]
+name = "rsvz-game"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Reusable backend-neutral RustVsZombies game logic"
+
+[features]
+default = []
+backend-tests = []
+
+[dependencies]
+rsvz-current.workspace = true
+base64.workspace = true
+miniz_oxide.workspace = true
+rsvz-backend-api.workspace = true
+rsvz-model.workspace = true
+rsvz-profiling.workspace = true
+rsvz-schedule.workspace = true
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror.workspace = true
+
+[lints]
+workspace = true

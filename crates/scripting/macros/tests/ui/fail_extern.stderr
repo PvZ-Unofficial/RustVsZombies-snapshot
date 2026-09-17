@@ -1,0 +1,5 @@
+error: #[rsvz::script] does not support extern fn
+ --> tests/ui/fail_extern.rs:4:1
+  |
+4 | extern "C" fn script() {}
+  | ^^^^^^

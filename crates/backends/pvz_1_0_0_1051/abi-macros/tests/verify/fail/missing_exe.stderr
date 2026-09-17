@@ -1,0 +1,5 @@
+error: RSVZ_PVZ1051_EXE must point to the original PlantsVsZombies.exe
+ --> tests/verify/fail/missing_exe.rs:4:5
+  |
+4 |     retained_wrapper() {
+  |     ^^^^^^^^^^^^^^^^

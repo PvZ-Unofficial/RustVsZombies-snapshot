@@ -1,0 +1,21 @@
+[package]
+name = "pe-rs"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+build = "build.rs"
+
+[lib]
+name = "pe_rs"
+path = "src/lib.rs"
+
+[build-dependencies]
+bindgen = "0.72"
+cc = "1.2"
+
+[lints.rust]
+unsafe_code = "warn"
+unsafe_op_in_unsafe_fn = "deny"
+
+[lints.clippy]
+all = "warn"

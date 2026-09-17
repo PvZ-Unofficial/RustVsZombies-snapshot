@@ -1,0 +1,5 @@
+error: #[rsvz::script] no longer accepts state_hooks; mark one installer with #[rsvz::state_hooks]
+ --> tests/ui/fail_state_hooks_script_option.rs:5:23
+  |
+5 | #[rsvz_macros::script(state_hooks = install_hooks)]
+  |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^

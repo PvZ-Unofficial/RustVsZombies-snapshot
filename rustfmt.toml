@@ -1,0 +1,5 @@
+style_edition = "2024"
+newline_style = "Unix"
+
+max_width = 120
+fn_params_layout = "Compressed"

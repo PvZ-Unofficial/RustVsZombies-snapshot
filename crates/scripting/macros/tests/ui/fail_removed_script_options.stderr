@@ -1,0 +1,11 @@
+error: #[rsvz::script(fast_forward)] is no longer supported; fast-forward DSL operations are enabled by default
+ --> tests/ui/fail_removed_script_options.rs:3:23
+  |
+3 | #[rsvz_macros::script(fast_forward)]
+  |                       ^^^^^^^^^^^^
+
+error: #[rsvz::script(maid_cheats)] is no longer supported; MaidCheats DSL operations are enabled by default
+ --> tests/ui/fail_removed_script_options.rs:6:23
+  |
+6 | #[rsvz_macros::script(maid_cheats)]
+  |                       ^^^^^^^^^^^

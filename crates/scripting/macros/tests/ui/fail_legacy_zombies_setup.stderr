@@ -1,0 +1,5 @@
+error[E0425]: cannot find function `zombies` in this scope
+ --> tests/ui/fail_legacy_zombies_setup.rs:7:5
+  |
+7 |     zombies("普");
+  |     ^^^^^^^ not found in this scope

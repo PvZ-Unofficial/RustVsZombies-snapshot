@@ -1,0 +1,8 @@
+[dependencies]
+serde = "1"
+
+[backend.pvz-emulator.dependencies]
+pe_script_model = { path = "../../../../../core/model", package = "rsvz-model" }
+
+[backend.pvz-1-0-0-1051.dependencies]
+native_script_model = { path = "../../../../../core/model", package = "rsvz-model" }

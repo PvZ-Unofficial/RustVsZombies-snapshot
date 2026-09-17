@@ -1,0 +1,5 @@
+error: #[rsvz::script] does not support async fn
+ --> tests/ui/fail_async.rs:4:1
+  |
+4 | async fn script() {}
+  | ^^^^^

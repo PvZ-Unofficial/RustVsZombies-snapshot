@@ -1,0 +1,5 @@
+error: pvz_abi_call! requires `ret: st0<f32> => place` or `ret: st0<f64> => place` for x87 returns
+ --> tests/ui/fail/invalid_x87_return.rs:8:18
+  |
+8 |             ret: st0 => out,
+  |                  ^^^

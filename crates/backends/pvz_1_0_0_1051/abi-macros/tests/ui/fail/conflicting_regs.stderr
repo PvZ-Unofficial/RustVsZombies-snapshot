@@ -1,0 +1,5 @@
+error: binding for `al` conflicts with the `this` binding `eax`
+  --> tests/ui/fail/conflicting_regs.rs:10:21
+   |
+10 |             regs: { al = flag },
+   |                     ^^

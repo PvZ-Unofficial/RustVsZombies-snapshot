@@ -1,0 +1,16 @@
+# RE20 W1：原 ICE3 与延后激活 ICE2 的八列炮损对照。
+# 不放九列阻挡物，直接保护五路 C8 炮，是比实际阵面更苛刻的测试。
+scene:RE
+protect:18 28 38 48 58
+repeat:100000
+std:true
+avzTime:false
+cobDelay:false
+
+w1 331 0~600
+P1 225 2 9.1625
+P7 225 4 9
+
+w2 359 0~600
+P1 288 2 9.1625
+P7 288 4 9

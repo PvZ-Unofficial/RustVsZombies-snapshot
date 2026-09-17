@@ -1,0 +1,5 @@
+error: wrapper parameters must be simple identifiers written as `name: Type`
+ --> tests/ui/fail/invalid_wrapper_param.rs:4:18
+  |
+4 |     board_update(_: *mut u8) {
+  |                  ^

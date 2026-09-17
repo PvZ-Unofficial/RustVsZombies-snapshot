@@ -1,0 +1,5 @@
+error: could not choose a call-target scratch register automatically because all safe i686 call-target registers are already occupied: eax by the `this` binding `eax`, edx by the `regs` binding `edx`, ecx by the `regs` binding `ecx`, ebx by the `regs` binding `ebx`, edi by the `regs` binding `edi`
+  --> tests/ui/fail/no_free_scratch.rs:12:13
+   |
+12 |             addr: 1,
+   |             ^^^^

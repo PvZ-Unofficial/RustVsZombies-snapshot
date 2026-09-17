@@ -1,0 +1,12 @@
+[package]
+name = "contact_geometry_probe"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+publish = false
+
+[dependencies]
+rsvz = { path = "../../../crates/scripting/api" }
+
+[workspace]
+resolver = "3"

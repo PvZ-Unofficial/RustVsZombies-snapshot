@@ -1,0 +1,30 @@
+[package]
+name = "rsvz"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "RustVsZombies user API crate — the only dependency users need"
+
+[features]
+default = []
+pvz-1-0-0-1051 = ["rsvz-current/pvz-1-0-0-1051"]
+pvz-emulator = ["rsvz-current/pvz-emulator"]
+pvz-portable = ["rsvz-current/pvz-portable"]
+
+[dependencies]
+rsvz-current.workspace = true
+rsvz-backend-api.workspace = true
+rsvz-profiling.workspace = true
+rsvz-game.workspace = true
+rsvz-macros.workspace = true
+rsvz-model.workspace = true
+rsvz-schedule.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+proc-macro2 = "1"
+syn = { version = "2", features = ["full", "visit"] }
+rsvz-pvz-emulator-backend = { path = "../../backends/pvz_emulator/backend" }
+
+[lints]
+workspace = true

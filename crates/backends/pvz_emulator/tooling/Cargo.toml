@@ -1,0 +1,17 @@
+[package]
+name = "rsvz-pvz-emulator-tooling"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Build and run helpers for the PvZ-Emulator backend tooling"
+
+[dependencies]
+anyhow = "1"
+cargo_metadata = "0.19"
+clap.workspace = true
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[lints]
+workspace = true

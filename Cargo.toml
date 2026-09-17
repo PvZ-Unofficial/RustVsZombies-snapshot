@@ -1,0 +1,185 @@
+[workspace]
+members = [
+    "crates/backends/none",
+    "crates/backends/pvz_1_0_0_1051/abi-macros",
+    "crates/backends/pvz_1_0_0_1051/injector",
+    "crates/backends/pvz_1_0_0_1051/injected",
+    "crates/backends/pvz_1_0_0_1051/tooling",
+    "crates/backends/pvz_emulator/pe-rs",
+    "crates/backends/pvz_emulator/backend",
+    "crates/backends/pvz_emulator/tooling",
+    "crates/backends/pvz_portable/pvzp-rs",
+    "crates/backends/pvz_portable/backend",
+    "crates/backends/pvz_portable/tooling",
+    "crates/core/backend-api",
+    "crates/core/profiling",
+    "crates/core/game",
+    "crates/core/model",
+    "crates/core/schedule",
+    "crates/scripting/api",
+    "crates/core/current",
+    "crates/scripting/macros",
+    # "crates/plugins/*",
+    # "crates/bindings/*",
+    "crates/tools/rsvz-cli",
+]
+default-members = [
+    "crates/backends/none",
+    "crates/backends/pvz_1_0_0_1051/abi-macros",
+    "crates/backends/pvz_1_0_0_1051/injector",
+    "crates/backends/pvz_1_0_0_1051/tooling",
+    "crates/backends/pvz_emulator/tooling",
+    "crates/backends/pvz_portable/tooling",
+    "crates/core/backend-api",
+    "crates/core/profiling",
+    "crates/core/game",
+    "crates/core/model",
+    "crates/core/schedule",
+    "crates/scripting/api",
+    "crates/core/current",
+    "crates/scripting/macros",
+    "crates/tools/rsvz-cli",
+]
+resolver = "3"
+
+[profile.release]
+lto = "thin"
+
+[profile.dev.build-override]
+opt-level = 2
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "GPL-3.0-only"
+
+[workspace.dependencies]
+rsvz-backend-api = { path = "crates/core/backend-api" }
+rsvz-current = { path = "crates/core/current" }
+rsvz-no-backend = { path = "crates/backends/none" }
+rsvz-profiling = { path = "crates/core/profiling" }
+rsvz-game = { path = "crates/core/game" }
+rsvz-model = { path = "crates/core/model" }
+rsvz-schedule = { path = "crates/core/schedule" }
+rsvz-macros = { path = "crates/scripting/macros" }
+pe-rs = { path = "crates/backends/pvz_emulator/pe-rs" }
+pvzp-rs = { path = "crates/backends/pvz_portable/pvzp-rs" }
+rsvz-pvz-portable-backend = { path = "crates/backends/pvz_portable/backend" }
+base64 = "0.22"
+clap = { version = "4.6.1", default-features = false, features = ["std", "derive", "help", "usage", "error-context"] }
+miniz_oxide = { version = "0.8", default-features = false, features = ["with-alloc"] }
+thiserror = "2"
+windows-sys = "0.61.2"
+
+[workspace.lints.rust]
+unexpected_cfgs = "warn"
+
+[workspace.lints.clippy]
+correctness = { level = "deny", priority = -1 }
+suspicious = { level = "warn", priority = -1 }
+perf = { level = "warn", priority = -1 }
+complexity = { level = "warn", priority = -1 }
+style = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+
+# Extra unsafe/FFI hygiene lints formerly repeated as crate attributes.
+borrow_as_ptr = "warn"
+cast_ptr_alignment = "warn"
+inline_asm_x86_att_syntax = "warn"
+ptr_as_ptr = "warn"
+ptr_cast_constness = "warn"
+ref_as_ptr = "warn"
+significant_drop_in_scrutinee = "warn"
+significant_drop_tightening = "warn"
+trailing_empty_array = "warn"
+transmute_ptr_to_ptr = "warn"
+transmute_undefined_repr = "warn"
+undocumented_unsafe_blocks = "warn"
+uninhabited_references = "warn"
+unsafe_derive_deserialize = "warn"
+volatile_composites = "warn"
+
+# Private-workspace and audit-only lints from otherwise enabled groups.
+cargo_common_metadata = "allow"
+too_many_arguments = "allow"
+type_complexity = "allow"
+multiple_crate_versions = "allow"
+
+# Style lints that conflict with current ABI, naming, or module conventions.
+disallowed_fields = "allow"
+disallowed_macros = "allow"
+disallowed_methods = "allow"
+disallowed_names = "allow"
+disallowed_types = "allow"
+enum_variant_names = "allow"
+init_numbered_fields = "allow"
+missing_enforced_import_renames = "allow"
+missing_safety_doc = "allow"
+module_inception = "allow"
+self_named_constructors = "allow"
+single_component_path_imports = "allow"
+toplevel_ref_arg = "allow"
+unsafe_removed_from_name = "allow"
+upper_case_acronyms = "allow"
+
+# Selected pedantic lints with high signal for this project.
+cloned_instead_of_copied = "warn"
+comparison_chain = "warn"
+doc_broken_link = "warn"
+doc_link_with_quotes = "warn"
+doc_markdown = "allow"
+empty_enums = "warn"
+expl_impl_clone_on_copy = "warn"
+ignore_without_reason = "warn"
+implicit_clone = "warn"
+invalid_upcast_comparisons = "warn"
+manual_assert = "warn"
+manual_is_power_of_two = "warn"
+manual_is_variant_and = "warn"
+manual_let_else = "warn"
+manual_midpoint = "warn"
+manual_string_new = "warn"
+range_minus_one = "warn"
+range_plus_one = "warn"
+redundant_closure_for_method_calls = "warn"
+redundant_else = "warn"
+same_functions_in_if_condition = "warn"
+single_char_pattern = "warn"
+str_split_at_newline = "warn"
+unchecked_time_subtraction = "warn"
+uninlined_format_args = "warn"
+unnecessary_join = "warn"
+zero_sized_map_values = "warn"
+
+# Selected nursery lints that are stable enough to be useful as default warnings.
+clear_with_drain = "warn"
+debug_assert_with_mut_call = "warn"
+derive_partial_eq_without_eq = "warn"
+fallible_impl_from = "warn"
+iter_with_drain = "warn"
+literal_string_with_formatting_args = "warn"
+needless_collect = "warn"
+needless_type_cast = "warn"
+non_send_fields_in_send_ty = "warn"
+or_fun_call = "warn"
+read_zero_byte_vec = "warn"
+redundant_clone = "warn"
+redundant_pub_crate = "allow"
+search_is_some = "warn"
+set_contains_or_insert = "warn"
+suspicious_operation_groupings = "warn"
+trait_duplication_in_bounds = "warn"
+type_repetition_in_bounds = "warn"
+unused_peekable = "warn"
+while_float = "warn"
+
+# Selected restriction lints for project hygiene; do not enable the whole group.
+allow_attributes_without_reason = "warn"
+dbg_macro = "warn"
+let_underscore_must_use = "warn"
+todo = "warn"
+unimplemented = "warn"
+unnecessary_safety_comment = "warn"
+unnecessary_safety_doc = "warn"
+unused_result_ok = "warn"

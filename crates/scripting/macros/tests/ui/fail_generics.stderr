@@ -1,0 +1,5 @@
+error: #[rsvz::script] functions cannot declare generics
+ --> tests/ui/fail_generics.rs:4:11
+  |
+4 | fn script<T>() {}
+  |           ^

@@ -1,0 +1,5 @@
+error: wrapper parameters must be simple identifiers written as `name: Type`
+ --> tests/ui/fail/multi_entry_span.rs:8:15
+  |
+8 |     board_bad(_: *mut u8) {
+  |               ^

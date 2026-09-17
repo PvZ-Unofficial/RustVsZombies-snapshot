@@ -1,0 +1,13 @@
+[package]
+name = "witness-ice3-garg-throw"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+publish = false
+
+[dependencies]
+rsvz = { path = "../../crates/scripting/api" }
+rsvz-witness = { path = "../../extensions/rsvz-witness", features = ["capture"] }
+
+[workspace]
+resolver = "3"

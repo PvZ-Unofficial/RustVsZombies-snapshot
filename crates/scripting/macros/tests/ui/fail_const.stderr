@@ -1,0 +1,5 @@
+error: #[rsvz::script] does not support const fn
+ --> tests/ui/fail_const.rs:4:1
+  |
+4 | const fn script() {}
+  | ^^^^^

@@ -1,0 +1,18 @@
+# RE20 W1：原 ICE3 与延后激活 ICE2 的九列存冰损伤对照。
+# explode 每波独立生成梯/丑/橄/篮各 5 只；损伤栏含梯子啃食等非小丑伤害。
+scene:RE
+protect:19' 49'
+repeat:100000
+std:true
+avzTime:false
+cobDelay:false
+
+# 作者原时机：W1 225 PP、331 I。
+w1 331 0~600
+P1 225 2 9.1625
+P7 225 4 9
+
+# 当前 ICE2 候选：W1 288 PP、359 I。
+w2 359 0~600
+P1 288 2 9.1625
+P7 288 4 9

@@ -1,0 +1,11 @@
+[package]
+name = "rsvz-profiling"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Lightweight RustVsZombies profiling primitives"
+
+[dependencies]
+
+[lints]
+workspace = true

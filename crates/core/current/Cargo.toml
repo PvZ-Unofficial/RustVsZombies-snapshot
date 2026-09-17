@@ -1,0 +1,21 @@
+[package]
+name = "rsvz-current"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Compile-time current backend selector for RustVsZombies"
+
+[features]
+default = []
+pvz-1-0-0-1051 = ["dep:rsvz_backend_1051"]
+pvz-emulator = ["dep:rsvz-pvz-emulator-backend"]
+pvz-portable = ["dep:rsvz-pvz-portable-backend"]
+
+[dependencies]
+rsvz-no-backend.workspace = true
+rsvz_backend_1051 = { package = "rsvz-pvz1051-injected", path = "../../backends/pvz_1_0_0_1051/injected", default-features = false, optional = true }
+rsvz-pvz-emulator-backend = { path = "../../backends/pvz_emulator/backend", optional = true }
+rsvz-pvz-portable-backend = { workspace = true, optional = true }
+
+[lints]
+workspace = true

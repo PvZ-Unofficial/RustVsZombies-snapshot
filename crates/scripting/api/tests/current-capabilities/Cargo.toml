@@ -1,0 +1,34 @@
+[package]
+name = "rsvz-current-capability-tests"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[workspace]
+
+[features]
+default = []
+pvz-emulator = ["rsvz/pvz-emulator"]
+pvz-1-0-0-1051 = ["rsvz/pvz-1-0-0-1051"]
+pvz-portable = ["rsvz/pvz-portable"]
+invoke = []
+pe-direct = ["rsvz-current/pvz-emulator", "dep:rsvz-pvz-emulator-backend"]
+
+[dependencies]
+rsvz-game = { path = "../../../../core/game" }
+rsvz = { path = "../..", default-features = false }
+rsvz-backend-api = { path = "../../../../core/backend-api" }
+rsvz-current = { path = "../../../../core/current" }
+rsvz-pvz-emulator-backend = { path = "../../../../backends/pvz_emulator/backend", optional = true }
+
+[[example]]
+name = "smart_remove_pe"
+required-features = ["pe-direct"]
+
+[[example]]
+name = "key_registry_1051"
+required-features = ["pvz-1-0-0-1051"]
+
+[[example]]
+name = "no_board_frame_1051"
+required-features = ["pvz-1-0-0-1051"]

@@ -1,0 +1,27 @@
+[package]
+name = "injector"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "PvZ 1.0.0.1051 DLL injector — enumerate game windows, remote memory R/W, DLL inject/eject"
+
+[dependencies]
+thiserror.workspace = true
+clap.workspace = true
+
+[dependencies.windows-sys]
+workspace = true
+features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_System_Memory",
+    "Win32_System_ProcessStatus",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_LibraryLoader",
+    "Win32_UI_WindowsAndMessaging",
+]
+
+[lints]
+workspace = true

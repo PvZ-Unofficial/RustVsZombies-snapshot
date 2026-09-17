@@ -1,0 +1,28 @@
+error[E0592]: duplicate definitions with name `__rsvz_install`
+ --> tests/ui/fail_duplicate_state_hooks.rs:5:1
+  |
+5 | #[state_hooks]
+  | ^^^^^^^^^^^^^^ duplicate definitions for `__rsvz_install`
+...
+8 | #[state_hooks]
+  | -------------- other definition for `__rsvz_install`
+  |
+  = note: this error originates in the attribute macro `state_hooks` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0034]: multiple applicable items in scope
+  --> tests/ui/fail_duplicate_state_hooks.rs:11:1
+   |
+11 | #[script]
+   | ^^^^^^^^^ multiple `__rsvz_install` found
+   |
+note: candidate #1 is defined in an impl for the type `__RsvzStateHookInstaller`
+  --> tests/ui/fail_duplicate_state_hooks.rs:5:1
+   |
+ 5 | #[state_hooks]
+   | ^^^^^^^^^^^^^^
+note: candidate #2 is defined in an impl for the type `__RsvzStateHookInstaller`
+  --> tests/ui/fail_duplicate_state_hooks.rs:8:1
+   |
+ 8 | #[state_hooks]
+   | ^^^^^^^^^^^^^^
+   = note: this error originates in the attribute macro `script` which comes from the expansion of the attribute macro `state_hooks` (in Nightly builds, run with -Z macro-backtrace for more info)

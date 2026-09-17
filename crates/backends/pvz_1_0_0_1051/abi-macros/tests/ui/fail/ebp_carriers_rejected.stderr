@@ -1,0 +1,23 @@
+error: `ebp` is not supported in the `this` binding: the 1051 calling-convention table has no `ebp = ...` ABI carrier, and `ebp` is an i686 frame/base pointer register. If a future ABI really needs `ebp`, evaluate a dedicated trampoline or global asm wrapper instead of the generic macro
+  --> tests/ui/fail/ebp_carriers_rejected.rs:11:19
+   |
+11 |             this: ebp = app,
+   |                   ^^^
+
+error: `ebp` is not supported in a `regs` binding: the 1051 calling-convention table has no `ebp = ...` ABI carrier, and `ebp` is an i686 frame/base pointer register. If a future ABI really needs `ebp`, evaluate a dedicated trampoline or global asm wrapper instead of the generic macro
+  --> tests/ui/fail/ebp_carriers_rejected.rs:18:21
+   |
+18 |             regs: { ebp = value },
+   |                     ^^^
+
+error: `ebp` is not supported in a `ret` binding: the 1051 calling-convention table has no `ebp = ...` ABI carrier, and `ebp` is an i686 frame/base pointer register. If a future ABI really needs `ebp`, evaluate a dedicated trampoline or global asm wrapper instead of the generic macro
+  --> tests/ui/fail/ebp_carriers_rejected.rs:25:18
+   |
+25 |             ret: ebp => out,
+   |                  ^^^
+
+error: `ebp` is not supported in the `clobber` list: the 1051 calling-convention table has no `ebp = ...` ABI carrier, and `ebp` is an i686 frame/base pointer register. If a future ABI really needs `ebp`, evaluate a dedicated trampoline or global asm wrapper instead of the generic macro
+  --> tests/ui/fail/ebp_carriers_rejected.rs:32:23
+   |
+32 |             clobber: [ebp],
+   |                       ^^^

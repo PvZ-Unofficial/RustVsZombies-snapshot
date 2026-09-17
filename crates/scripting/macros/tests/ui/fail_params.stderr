@@ -1,0 +1,5 @@
+error: #[rsvz::script] functions cannot take parameters
+ --> tests/ui/fail_params.rs:4:11
+  |
+4 | fn script(_value: i32) {}
+  |           ^^^^^^^^^^^

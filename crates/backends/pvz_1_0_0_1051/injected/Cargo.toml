@@ -1,0 +1,26 @@
+[package]
+name = "rsvz-pvz1051-injected"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "PvZ 1.0.0.1051 backend linked into injected runner DLLs"
+
+[lib]
+name = "rsvz_backend_1051"
+
+[features]
+fast-forward-profiler = ["dep:rsvz-profiling"]
+verify-abi = ["rsvz-abi-macros/verify-exe"]
+
+[dependencies]
+rsvz-backend-api = { workspace = true }
+rsvz-abi-macros = { path = "../abi-macros" }
+rsvz-profiling = { workspace = true, optional = true }
+rsvz-model = { workspace = true }
+thiserror.workspace = true
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1" }
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_UI_Input_KeyboardAndMouse", "Win32_UI_WindowsAndMessaging"] }
+
+[lints]
+workspace = true

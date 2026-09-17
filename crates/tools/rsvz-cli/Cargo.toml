@@ -1,0 +1,23 @@
+[package]
+name = "rsvz-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "RustVsZombies CLI tool — setup, build, run, eject"
+
+[dependencies]
+anyhow = "1"
+clap.workspace = true
+rsvz-backend-1051-tooling = { path = "../../backends/pvz_1_0_0_1051/tooling" }
+rsvz-pvz-emulator-tooling = { path = "../../backends/pvz_emulator/tooling" }
+rsvz-pvz-portable-tooling = { path = "../../backends/pvz_portable/tooling" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "1"
+
+[[bin]]
+name = "rsvz"
+path = "src/main.rs"
+
+[lints]
+workspace = true

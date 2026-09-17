@@ -1,0 +1,3 @@
+[alias]
+check-1051 = "check -p rsvz-pvz1051-injected --target i686-pc-windows-msvc"
+clippy-1051 = "clippy -p rsvz-pvz1051-injected --target i686-pc-windows-msvc --all-targets --all-features --no-deps"
