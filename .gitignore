@@ -17,10 +17,10 @@ Thumbs.db
 *.swp
 /lineup.yml
 
+/LOCAL.md
+
 /tools/
 /vendor/pvz-emulator/
 /.cargo-home/
 /results/
 /user-scripts/
-
-/LOCAL.md
