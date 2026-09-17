@@ -15,7 +15,8 @@
 - 分析一下可能的失败原因
 - 请开启1051游戏并完成注入运行
 
-详细安装和运行命令见 [使用指南](docs/snapshot-quickstart.md)。
+下载 [Release 中的完整 rsvz-windows-tools.zip](https://github.com/PvZ-Unofficial/RustVsZombies-snapshot/releases)，
+一个 ZIP 包含该版本的源码、脚本、最新文档和固定工具链。详细安装和运行命令见 [使用指南](docs/snapshot-quickstart.md)。
 群曾脚本统一维护在 [dev-scripts/lowdsl/mge_qunzeng](dev-scripts/lowdsl/mge_qunzeng)，
 采用固定四喷、不偷阳光菇的版本，不需要另装独立脚本仓库。
 
