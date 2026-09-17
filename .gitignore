@@ -22,3 +22,5 @@ Thumbs.db
 /.cargo-home/
 /results/
 /user-scripts/
+
+/LOCAL.md

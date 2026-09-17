@@ -7,6 +7,11 @@ API 仍可能变化。不要把一个脚本的验证结果推广到全部后端�
 ## 安装
 
 从 Release 下载 `rsvz-windows-tools.zip`，解压到自己的目录。
+Release 工具包中的源码固定在发布时刻；当前 `main` 的脚本和 AGENTS.md 可能更新。
+需要当前版本时，下载本仓库 `main` 源码并合并到安装目录，保留 `tools/` 和
+`vendor/pvz-emulator/`。已有个人脚本改动应先合并，不要清空安装目录或直接覆盖个人修改。
+群曾脚本使用库内 `--dev-script lowdsl/mge_qunzeng`，无需独立脚本仓库。
+
 工具包自带固定版本 Rust（x64/x86 MSVC 标准库）、LLVM、CMake、Ninja、RSVZ CLI，
 以及 `vendor/pvz-emulator`；不依赖相邻开发仓库。GitHub 自动生成的 Source ZIP
 和 `rsvz-source.zip` 不包含工具链；后者包含同版 PE。
